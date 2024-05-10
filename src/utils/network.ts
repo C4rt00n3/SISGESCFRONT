@@ -10,7 +10,7 @@ class NetWork {
         private readonly params: AxiosRequestConfig["params"],
         private readonly headers: AxiosRequestConfig["headers"] = {},
     ) {
-        this.baseUrl = "http://127.0.0.1:5000/";
+        this.baseUrl = process.env.API_URL;
         this.token = localStorage.getItem("token") || null;
         this.headers = { "Authorization": "Bearer " + this.token }
     }
