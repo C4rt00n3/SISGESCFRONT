@@ -1,0 +1,54 @@
+.table {
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table ul {
+    width: 100%;
+    height: 250px;
+    overflow: hidden scroll;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 0px;
+    flex-direction: column;
+}
+
+.table ul li {
+    width: calc(100% - 24px);
+    background-color: var(--gray-secundary);
+    margin: 0px;
+    border-radius: 30px;
+    padding-inline: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table ul li p {
+    size: 17px;
+    color: var(--text-card);
+}
+
+.table ul li button {
+    padding-inline: 12px;
+    height: 33px;
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-card);
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}

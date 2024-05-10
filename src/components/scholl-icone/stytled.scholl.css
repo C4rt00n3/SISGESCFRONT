@@ -1,0 +1,14 @@
+.div-scholl-icon {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.div-scholl-icon img {
+    border-radius: 100%;
+}
+
+.div-scholl-icon span {
+    font-size: 14px;
+    width: max-content;
+}

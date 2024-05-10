@@ -1,0 +1,25 @@
+.enrollment-form {
+    display: flex;
+    flex-direction: column;
+
+    padding-inline: 14px;
+}
+
+.button-form {
+    border-radius: 30px;
+
+    width: 100%;
+    padding: 8px;
+
+    color: var(--green-text);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.box-button-div {
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,35 @@
+.conteiner-main {
+    width: 90%;
+    height: 100vh;
+    margin-inline: 5%;
+
+    display: flex;
+    gap: 52px;
+}
+
+.conteiner-main main {
+    width: 100%;
+    padding-block: 2.5%;
+}
+
+.list-info {
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+
+    padding: 0px;
+    list-style: none;
+}
+
+.list-info li {
+    width: 100%;
+}
+
+.box-lists {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
