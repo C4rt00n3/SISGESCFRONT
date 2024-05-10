@@ -1,4 +1,5 @@
 // MatriculaScreen.tsx
+import { useParams } from "react-router-dom";
 import Input from "../../components/Input-header";
 import FormMatricula from "../../components/from-matricula";
 import NavBar from "../../components/nav-bar";
@@ -13,6 +14,8 @@ import "./styled.css";
 const Matricula = () => {
     // Get the fields array from the context
     const { fields } = useMatriculaContext();
+    const { id } = useParams();
+    console.log(id);
 
     return (
         <div className="main-container">

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Input from "../../components/Input-header";
 import ButtonGeneric from "../../components/button-generic";
 import CardInformation from "../../components/card-infomations";
@@ -8,10 +9,14 @@ import "./styled.css";
 
 
 export default function Home() {
-    const {statistics, matriculas} = useHomeContext()
+    const {statistics, matriculas, fetchMatriculas} = useHomeContext()
     const getColor = (i: number): string => {
         return ["#F52000", "#14F71F", "var(--pink)", "var(--pink)", "var(--pink)"][i];
     };
+
+    useEffect(()=> {
+        fetchMatriculas()
+    },[])
 
     return (
         <div className="conteiner-main">
