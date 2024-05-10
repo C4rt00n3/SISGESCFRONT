@@ -28,22 +28,32 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
         setLoading(false)
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const api = new NetWork("", 5000, {});
-            try {
-                const data = await api.get({});
-                setStatistics(data);
-                const matriculasData = await api.getAll({ route: "matricula" });
-                setMatriculas(matriculasData);
-            } catch (error: any) {
-                callToast(
-                    error.response?.data?.message || "An error occurred",
-                );
-            }
-        };
+    const api = new NetWork("", 5000, {});
 
-        fetchData();
+    const fetchStatics = async () => {
+        try {
+            const data = await api.get({});
+            setStatistics(data);
+        } catch (error: any) {
+            callToast(
+                error.response?.data?.message || "An error occurred",
+            );
+        }
+    }
+
+    const fetchMatriculas = async () => {
+        try {
+            const matriculasData = await api.getAll({ route: "matricula" });
+            setMatriculas(matriculasData);
+        } catch (error: any) {
+            callToast(
+                error.response?.data?.message || "An error occurred",
+            );
+        }
+    };
+
+    useEffect(() => {
+        fetchStatics()
     }, []);
 
     return (
@@ -52,7 +62,9 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
             navigation,
             statistics,
             setMatriculas,
-            loading
+            loading,
+            fetchStatics,
+            fetchMatriculas
         }}>
             {children}
         </HomeContext.Provider>

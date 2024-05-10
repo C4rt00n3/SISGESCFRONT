@@ -1,41 +1,35 @@
-import { Route, Routes } from "react-router-dom";
-import RoutesInterface from "../interfaces/iRoutes";
-import { Bounce, ToastContainer } from "react-toastify";
+import { useRoutes } from "react-router-dom";
+import Home from "./home/page";
+import Login from "./login/page";
+import EnrollmentRouteWithId from "./matricula/[id]/page";
+import Matricula from "./matricula/page";
 
 /**
  * Componente que centraliza a definição de rotas em uma aplicação React Router.
- * Recebe um array de objetos RoutesInterface, mapeia esses objetos para criar os componentes Route correspondentes
- * e os renderiza dentro de um componente Routes.
- * 
+ *
  * @param routers Um array de objetos RoutesInterface contendo as propriedades de cada rota.
- * @returns Um componente Routes contendo os componentes Route definidos a partir do array routers.
+ * @returns Um fragmento contendo os componentes Routes e ToastContainer.
  */
-const RoutesCentralize = ({ routers }: { routers: RoutesInterface[] }) => {
-    // Mapeia o array routers para criar os componentes Route correspondentes
-
-    // Renderiza os componentes Route dentro de um componente Routes
-    return <>
-        <Routes>
-            {
-                routers.map(({ path, element }, index) => {
-                    return <Route path={path} element={element} key={index}></Route>
-                })
-            }
-        </Routes>;
-        <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition={Bounce}
-        />
-    </>
-}
+const RoutesCentralize = () => {
+    const routers = useRoutes([
+        {
+            path: "/",
+            element: <Login />
+        },
+        {
+            path: "home",
+            element: <Home />,
+        },
+        {
+            path: "matricula",
+            element: <Matricula />,
+        },
+        {
+            path: "matricula/:id",
+            element: <EnrollmentRouteWithId />
+        }
+    ]);
+    return routers
+};
 
 export default RoutesCentralize;
