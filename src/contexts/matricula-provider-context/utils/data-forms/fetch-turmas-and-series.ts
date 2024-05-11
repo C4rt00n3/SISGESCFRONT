@@ -3,7 +3,6 @@ import InputFields from "../../../../interfaces/inputs-interface/input-fields";
 import iSerie from "../../../../interfaces/netwok-interface/serie-interface";
 import iTurma from "../../../../interfaces/netwok-interface/turma-interface";
 import enumToArray from "../../../../utils/enum-to-array";
-import NetWork from "../../../../utils/network";
 
 /**
 Esta função recebe um array de turmas e um array de séries e retorna um array de campos de input formatado para formulários.
@@ -611,16 +610,4 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
     return fields
 }
 
-/**
- * Fetches all turmas and series from the API.
- * @returns A tuple containing the fetched turmas and series.
- */
-const fetchTurmasAndSeries = async (): Promise<InputFields[]> => {
-    const api = new NetWork("turma", 5000, {});
-    const turmas = await api.getAll({}) as iTurma[];
-    const series = await api.getAll({ route: "serie" }) as iSerie[];
-
-    return dataInputsMatricula(turmas, series)
-};
-
-export default fetchTurmasAndSeries
+export default dataInputsMatricula;
