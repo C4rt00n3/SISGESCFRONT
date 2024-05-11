@@ -26,6 +26,7 @@ const Input = () => {
     const find = async (text: string) => {
         const api = new NetWork(`matricula/names/${text}`, 5000, {})
         await api.get({}).then(data => {
+            console.log(data)
             setMatriculas((data as iMatricula[]).reverse())
         }).catch(() => {
             callToast("error")
@@ -66,7 +67,7 @@ const Input = () => {
                         }} className="button-x">X</button>
                     </>}
             </div>
-            <div>
+            <div className="conteiner-find">
                 {
                     matriculas.length > 0 && <ListGeneric></ListGeneric>
                 }

@@ -10,9 +10,13 @@ class NetWork {
         private readonly params: AxiosRequestConfig["params"],
         private readonly headers: AxiosRequestConfig["headers"] = {},
     ) {
-        this.baseUrl = "http://127.0.0.1:5000/";
+        this.baseUrl = "https://189b-128-201-182-77.ngrok-free.app/" 
+        // process.env.API_URL;
         this.token = localStorage.getItem("token") || null;
-        this.headers = { "Authorization": "Bearer " + this.token }
+        this.headers = {
+            "Authorization": "Bearer " + this.token,
+            'ngrok-skip-browser-warning': 'true'
+        }
     }
 
     private buildUrl(route?: string): string {
@@ -46,7 +50,8 @@ class NetWork {
         const response = await axios.get(url, {
             params: params ? params : this.params,
             headers: headers ? headers : this.headers,
-            timeout: timeout ? timeout : this.timeout
+            timeout: timeout ? timeout : this.timeout,
+
         });
 
 

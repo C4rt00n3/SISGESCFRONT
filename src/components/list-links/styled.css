@@ -1,4 +1,5 @@
 .list-links {
+    padding-top: 16px;
     list-style: none;
     margin: 0px;
     padding-inline: 16px;
@@ -8,7 +9,7 @@
 }
 
 .list-links li {
-    height: 44px;
+    height: 35px;
     display: flex;
     align-items: center;
     gap: 12px;

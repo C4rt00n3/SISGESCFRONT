@@ -13,14 +13,15 @@ import "./styled.css";
 const Matricula = () => {
     // Get the fields array from the context
     const { fields } = useMatriculaContext();
-
     return (
         <div className="main-container">
             <NavBar />
             <main>
                 <Input />
                 <div className="form-container">
-                    <FormMatricula method="post" fields={fields} />
+                    {
+                        (fields && fields.length > 0) && <FormMatricula method="post" fields={fields} />
+                    }
                 </div>
             </main>
         </div>

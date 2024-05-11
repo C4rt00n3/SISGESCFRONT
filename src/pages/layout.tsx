@@ -3,11 +3,8 @@ import { HomeContextProvider } from "../contexts/home-provider-context"; // Impo
 import { MatriculaContextProvider } from '../contexts/matricula-provider-context'; // Importa o contexto MatriculaContextProvider
 import Loading from '../components/loading'; // Importa o componente Loading
 import RoutesCentralize from './routes'; // Importa o componente RoutesCentralize
-import Home from './home/page'; // Importa o componente Home
-import Login from './login/page'; // Importa o componente Login
-import Matricula from './matricula/page'; // Importa o componente Matricula
-import RoutesInterface from '../interfaces/iRoutes'; // Importa a interface RoutesInterface
-import { BrowserRouter } from 'react-router-dom'; // Importa o BrowserRouter do react-router-dom
+import { BrowserRouter } from 'react-router-dom';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 /**
  * Componente que define o layout principal da aplicação.
@@ -16,33 +13,33 @@ import { BrowserRouter } from 'react-router-dom'; // Importa o BrowserRouter do 
  * @returns O layout principal da aplicação.
  */
 export default function RootLayout() {
-  const routers: RoutesInterface[] = [
-    {
-      path: "/",
-      element: <Login />
-    },
-    {
-      path: "/home",
-      element: <Home />,
-    },
-    {
-      path: "/matricula",
-      element: <Matricula />
-    }
-  ];
-
   return (
-    <BrowserRouter>
-      {/* Provedor do contexto HomeContextProvider */}
-      <HomeContextProvider>
-        {/* Provedor do contexto MatriculaContextProvider */}
-        <MatriculaContextProvider>
-          {/* Componente de loading */}
-          <Loading />
-          {/* Componente RoutesCentralize com as rotas da aplicação */}
-          <RoutesCentralize routers={routers} />
-        </MatriculaContextProvider>
-      </HomeContextProvider>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        {/* Provedor do contexto HomeContextProvider */}
+        <HomeContextProvider>
+          {/* Provedor do contexto MatriculaContextProvider */}
+          <MatriculaContextProvider>
+            {/* Componente de loading */}
+            <Loading />
+            {/* Componente RoutesCentralize com as rotas da aplicação */}
+            <RoutesCentralize />
+          </MatriculaContextProvider>
+        </HomeContextProvider>
+      </BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+    </>
   );
 }

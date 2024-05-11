@@ -7,5 +7,7 @@ export default interface HomeContextInterface {
     matriculas: iMatricula[];
     setMatriculas: Dispatch<SetStateAction<iMatricula[]>>;
     navigation: (route: string, replace?: boolean) => void;
-    loading: boolean
+    loading: boolean;
+    fetchMatriculas: () => Promise<void>;
+    fetchStatics: () => Promise<void>
 }

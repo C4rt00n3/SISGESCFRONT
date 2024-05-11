@@ -1,5 +1,3 @@
-// EnrollmentRouteWithId.tsx
-
 import { useState, useEffect } from "react";
 import Input from "../../../components/Input-header";
 import FormMatricula from "../../../components/from-matricula";
@@ -9,10 +7,10 @@ import { useMatriculaContext } from "../../../contexts/matricula-provider-contex
 import iMatricula from "../../../interfaces/netwok-interface/matricula-interface";
 import NetWork from "../../../utils/network";
 import callToast from "../../../utils/tosts";
+import { useParams } from "react-router-dom";
 
-const EnrollmentRouteWithId = ({ params }: { params: { id: string } }) => {
-    // Get the fields array from the context
-    const { id } = params;
+const EnrollmentRouteWithId = () => {
+    const { id } = useParams();
     const { fields } = useMatriculaContext();
     const { matriculas } = useHomeContext();
     const [matricula, setMatricula] = useState<iMatricula>();
@@ -25,7 +23,7 @@ const EnrollmentRouteWithId = ({ params }: { params: { id: string } }) => {
         }
         const findMatricula = matriculas.find(e => e.id == Number(id));
 
-        if (!findMatricula)
+        if (!findMatricula && id)
             fetch(+id).then(matricula => {
                 setMatricula({
                     ...matricula,
@@ -51,7 +49,7 @@ const EnrollmentRouteWithId = ({ params }: { params: { id: string } }) => {
                 <div className="form-container">
                     {
                         matricula && <FormMatricula
-                            id={+id}
+                            id={id ? +id : undefined}
                             method="patch"
                             defaultValues={{
                                 ...matricula,
