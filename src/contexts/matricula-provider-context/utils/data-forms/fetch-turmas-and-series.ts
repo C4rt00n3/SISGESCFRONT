@@ -40,8 +40,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                     label: 'Nível',
                     type: 'text',
                     name: "nivel",
-                    selects: enumToArray(NivelEnsino).map((e,
-                        i) => {
+                    selects: enumToArray(NivelEnsino).map(e => {
                         return {
                             value: e,
                             text: e
@@ -129,8 +128,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                             label: 'Cor/Raça',
                             type: 'text',
                             name: "corRaca_Aluno",
-                            selects: enumToArray(CorRaca).map((e,
-                                i) => {
+                            selects: enumToArray(CorRaca).map(e => {
                                 return {
                                     value: e,
                                     text: e
@@ -140,8 +138,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                         {
                             label: 'Sexo',
                             name: "sexo",
-                            selects: enumToArray(Sexo).map((e,
-                                i) => {
+                            selects: enumToArray(Sexo).map(e => {
                                 return {
                                     value: e,
                                     text: e
@@ -350,8 +347,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                                         {
                                             label: 'Sexo',
                                             name: "sexo",
-                                            selects: enumToArray(Sexo).map((e,
-                                                i) => {
+                                            selects: enumToArray(Sexo).map((e) => {
                                                 return {
                                                     value: e,
                                                     text: e
@@ -405,8 +401,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                                             label: 'UF do RG',
                                             type: 'text',
                                             name: "UF",
-                                            selects: enumToArray(EstadoBrasil).map((e,
-                                                i) => {
+                                            selects: enumToArray(EstadoBrasil).map((e) => {
                                                 return {
                                                     value: e,
                                                     text: e

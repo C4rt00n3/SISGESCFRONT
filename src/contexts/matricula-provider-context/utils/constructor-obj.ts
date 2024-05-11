@@ -1,4 +1,4 @@
-import InputFields from "@/interfaces/inputs-interface/input-fields";
+import InputFields from "../../../interfaces/inputs-interface/input-fields";
 
 const constructorObj = (fields: InputFields[], obj: { [key: string]: { [key: string]: any } }) => {
     fields.forEach(value => {
