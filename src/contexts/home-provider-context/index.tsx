@@ -44,7 +44,6 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
     const fetchMatriculas = async () => {
         await api.getAll({ route: "matricula" })
             .then(data => {
-                console.log(data)
                 if (data.length)
                     setMatriculas(data);
             })

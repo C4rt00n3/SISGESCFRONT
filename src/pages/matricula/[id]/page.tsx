@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 
 const EnrollmentRouteWithId = () => {
     const { id } = useParams();
-    console.log(id);
     const { fields } = useMatriculaContext();
     const { matriculas } = useHomeContext();
     const [matricula, setMatricula] = useState<iMatricula>();
