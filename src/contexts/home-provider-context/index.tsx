@@ -42,14 +42,17 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
     }
 
     const fetchMatriculas = async () => {
-        try {
-            const matriculasData = await api.getAll({ route: "matricula" });
-            setMatriculas(matriculasData);
-        } catch (error: any) {
-            callToast(
-                error.response?.data?.message || "An error occurred",
-            );
-        }
+        await api.getAll({ route: "matricula" })
+            .then(data => {
+                console.log(data)
+                if (data.length)
+                    setMatriculas(data);
+            })
+            .catch(error => {
+                callToast(
+                    error.response?.data?.message || "An error occurred",
+                )
+            })
     };
 
     useEffect(() => {

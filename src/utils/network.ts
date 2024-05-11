@@ -12,7 +12,10 @@ class NetWork {
     ) {
         this.baseUrl = process.env.API_URL;
         this.token = localStorage.getItem("token") || null;
-        this.headers = { "Authorization": "Bearer " + this.token }
+        this.headers = {
+            "Authorization": "Bearer " + this.token,
+            'ngrok-skip-browser-warning': 'true'
+        }
     }
 
     private buildUrl(route?: string): string {
@@ -46,7 +49,8 @@ class NetWork {
         const response = await axios.get(url, {
             params: params ? params : this.params,
             headers: headers ? headers : this.headers,
-            timeout: timeout ? timeout : this.timeout
+            timeout: timeout ? timeout : this.timeout,
+
         });
 
 
