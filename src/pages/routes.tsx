@@ -3,6 +3,7 @@ import Home from "./home/page";
 import Login from "./login/page";
 import EnrollmentRouteWithId from "./matricula/[id]/page";
 import Matricula from "./matricula/page";
+import AlunoPage from "./aluno/page";
 
 /**
  * Componente que centraliza a definição de rotas em uma aplicação React Router.
@@ -17,16 +18,20 @@ const RoutesCentralize = () => {
             element: <Login />
         },
         {
-            path: "home",
+            path: "/home",
             element: <Home />,
         },
         {
-            path: "matricula",
+            path: "/matricula",
             element: <Matricula />,
         },
         {
-            path: "matricula/:id",
+            path: "/matricula/:id",
             element: <EnrollmentRouteWithId />
+        },
+        {
+            path: "alunos",
+            element: <AlunoPage/>
         }
     ]);
     return routers

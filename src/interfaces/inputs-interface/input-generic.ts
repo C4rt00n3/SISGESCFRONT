@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react"
 import iSelects from "./selects-interface";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { MaskTypes } from "../../components/mask-input/maskTypes";
+import { MaskTypes } from "../../components/inputs/mask-input/maskTypes";
 
 
 export default interface iInputGeneric {

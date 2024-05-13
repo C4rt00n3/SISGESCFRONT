@@ -1,13 +1,15 @@
-.conteiner {
+import styled from "styled-components";
+
+export const ConteinerLogin = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
 
     width: 100vw;
     height: 100vh;
-}
+`;
 
-.form-login {
+export const FormLogin = styled.form`
     width: 40%;
     height: 60%;
     display: flex;
@@ -16,9 +18,13 @@
     align-items: center;
 
     gap: 20px;
-}
 
-.box-centralize {
+    > h3 {
+        width: 100%;
+    }
+`;
+
+export const BoxCetralize = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -27,25 +33,22 @@
     justify-content: center;
 
     margin-inline: 10%;
-}
+`;
 
-.box-button {
-    width: 100%;
-}
 
-.button-open {
+export const ButtonLogin = styled.button`
     width: 100%;
     height: 50px;
 
-    background-color: var(--pink);
-    color: var(--green-text);
+    background-color: var(--brand-color);
+    color: var(--withe-color);
 
     border-radius: 30px;
+    border: none;
 
     padding: 0px;
     padding-inline: 0px;
-}
-
-.button-open:hover {
-    opacity: 80%;
-}
+    :hover {
+        opacity: 80%;
+    }
+`;

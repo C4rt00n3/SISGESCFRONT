@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import InputForm from "../../components/input-form";
+import InputForm from "../../components/inputs/input-form";
 import { useHomeContext } from "../../contexts/home-provider-context";
 import schemaLogin from "../../schemas/login-schema";
 import NetWork from "../../utils/network";
 import callToast from "../../utils/tosts";
 import inputFields from "../fields-inputs-login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "./styled.css";
+import { BoxCetralize, ButtonLogin, ConteinerLogin, FormLogin } from "./styled";
 
 const Login = (): JSX.Element => {
     const { navigation } = useHomeContext()
@@ -33,25 +33,23 @@ const Login = (): JSX.Element => {
     };
 
     return (
-        <div className="conteiner">
-            <div className='box-centralize'>
-                <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
+        <ConteinerLogin>
+            <BoxCetralize>
+                <FormLogin onSubmit={handleSubmit(onSubmit)}>
                     <h3 className="title-login">Login</h3>
                     {
                         inputFields.inputs.map((input, index) => (
                             <InputForm
                                 key={index}
                                 useFormRegister={useFormRegister}
-                                params={{ ...input, inputWidth: "100%" }}
+                                params={{ ...input, inputWidth: '100%' }}
                             />
                         ))
                     }
-                    <div className='box-button'>
-                        <button type='submit' className="button-open">Entrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                    <ButtonLogin type='submit'>Entrar</ButtonLogin>
+                </FormLogin>
+            </BoxCetralize>
+        </ConteinerLogin>
     );
 };
 

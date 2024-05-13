@@ -1,5 +1,5 @@
 // MatriculaScreen.tsx
-import Input from "../../components/Input-header";
+import Input from "../../components/inputs/Input-header";
 import FormMatricula from "../../components/from-matricula";
 import NavBar from "../../components/nav-bar";
 import { useMatriculaContext } from "../../contexts/matricula-provider-context";
