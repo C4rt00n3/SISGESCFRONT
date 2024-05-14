@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FieldValues, UseFormReturn } from "react-hook-form";
 import InputFields from "../../../interfaces/inputs-interface/input-fields";
 import getValueInObject from "../../../utils/get-values-in-object";
-import InputForm from "../../input-form";
+import InputForm from "../../inputs/input-form";
 
 interface RenderInputsProps {
     form: InputFields;

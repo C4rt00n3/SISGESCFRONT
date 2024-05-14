@@ -1,12 +1,16 @@
-import "./styled.css"
+import { BoxInfomatinsText, CardInformtionConteiner, StatusInformation } from "./styled";
 
-const CardInformation = ({ title, total, color }: { title: string, total: number, color?: string }) => {
-    return <div className="cont-centralize">
-        <div className="conteiner-card">
-            <h4>{title}</h4>
-            <h3 style={{ color: color ? color : "#000" }}>{total} <span>Total</span></h3>
-        </div>
-    </div>
+const CardInformation = ({ title, total }: { title: string, total: number}) => {
+    return <CardInformtionConteiner >
+        <BoxInfomatinsText>
+            <p>{title}</p>
+            <span>{total}</span>
+        </BoxInfomatinsText>
+        <StatusInformation>
+            <p>+55%</p>
+            <span>than last week</span>
+        </StatusInformation>
+    </CardInformtionConteiner>
 }
 
 export default CardInformation;

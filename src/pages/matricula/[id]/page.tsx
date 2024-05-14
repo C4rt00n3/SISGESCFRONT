@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Input from "../../../components/Input-header";
+import Input from "../../../components/inputs/Input-header";
 import FormMatricula from "../../../components/from-matricula";
 import NavBar from "../../../components/nav-bar";
 import { useHomeContext } from "../../../contexts/home-provider-context";
