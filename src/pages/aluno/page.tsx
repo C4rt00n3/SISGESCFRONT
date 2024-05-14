@@ -1,7 +1,7 @@
 // import { FaPrint } from "react-icons/fa";
 import Input from "../../components/inputs/Input-header";
 import NavBar from "../../components/nav-bar";
-import { ConteinerAluno, ItenListFunction, ListFuctions, MainConteiner } from "./styled"
+import { ConteinerAluno, ListFuctions, MainConteiner } from "./styled"
 // import { TbReportAnalytics } from "react-icons/tb";
 // import { FaMoneyBills } from "react-icons/fa6";
 

@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import InputForm from "../../components/inputs/input-form";
 import { useHomeContext } from "../../contexts/home-provider-context";
 import schemaLogin from "../../schemas/login-schema";
 import NetWork from "../../utils/network";
 import callToast from "../../utils/tosts";
 import inputFields from "../fields-inputs-login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BoxCetralize, ButtonLogin, ConteinerLogin, FormLogin } from "./styled";
+import InputForm from "../../components/inputs/input-form";
+import { ConteinerLogin, BoxCetralize, FormLogin, ButtonLogin } from "./styled";
 
 const Login = (): JSX.Element => {
     const { navigation } = useHomeContext()
