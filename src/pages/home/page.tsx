@@ -1,44 +1,87 @@
 import { useEffect } from "react";
-import Input from "../../components/Input-header";
-import ButtonGeneric from "../../components/button-generic";
+import Input from "../../components/inputs/Input-header";
 import CardInformation from "../../components/card-infomations";
-import ListGeneric from "../../components/list-generic";
 import NavBar from "../../components/nav-bar";
 import { useHomeContext } from "../../contexts/home-provider-context";
-import "./styled.css";
+import { BoxList, ConteinerHome, ItenListFunctions, ListInfo, MainHome } from "./styled";
+import { FaPrint } from "react-icons/fa";
+import { FaMoneyBills } from "react-icons/fa6";
+import { TbReportAnalytics } from "react-icons/tb";
+import TableAluno from "../../components/lists/list-alunos";
+
+
+const functions = [
+    {
+        title: "Imprimir matticula",
+        icon: <FaPrint />,
+        text: "Total de matriculas: " + 212,
+        updateAt: new Date()
+    },
+    {
+        title: "Consultar boletin",
+        icon: <TbReportAnalytics />,
+        text: "Total de boletins: " + 212,
+        updateAt: new Date()
+
+    },
+    {
+        title: "Financeiro",
+        icon: <FaMoneyBills />,
+        text: "Cresimento de +12%",
+        updateAt: new Date()
+
+    }
+]
 
 
 export default function Home() {
-    const {statistics, matriculas, fetchMatriculas} = useHomeContext()
-    const getColor = (i: number): string => {
-        return ["#F52000", "#14F71F", "var(--pink)", "var(--pink)", "var(--pink)"][i];
-    };
+    const { statistics, matriculas, fetchMatriculas } = useHomeContext()
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchMatriculas()
-    },[])
+    }, [])
+
+    const siglasMeses = [
+        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+        "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    ];
 
     return (
-        <div className="conteiner-main">
+        <ConteinerHome>
             <NavBar />
-            <main>
-                <Input />
-                {statistics && matriculas && (
-                    <div className="box-lists">
-                        <ul className="list-info">
-                            {Object.values(statistics).map((data, index) => (
-                                <li key={index}>
-                                    <CardInformation title={data.title} total={data.total} color={getColor(index)} />
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="conteiner-button">
-                            <ButtonGeneric type="submit" text="Fazer Matricula" />
-                        </div>
-                        <ListGeneric />
-                    </div>
-                )}
-            </main>
-        </div>
+            <MainHome>
+                <div className="input-header">
+                    <Input />
+                </div>
+                <>
+                    {statistics && matriculas && (
+                        <BoxList>
+                            <ListInfo height="145px">
+                                {Object.values(statistics).map((data, index) => (
+                                    <li key={index}>
+                                        <CardInformation title={data.title} total={data.total} />
+                                    </li>
+                                ))}
+                            </ListInfo>
+                            <ListInfo height="290px">
+                                {
+                                    functions.map(({ icon, title, text, updateAt }, index) => <ItenListFunctions key={index}>
+                                        {icon}
+                                        <h4>{title}</h4>
+                                        <p>
+                                            {text}
+                                        </p>
+                                        <small>Updated {updateAt.getDate()} {siglasMeses[updateAt.getUTCMonth()]}</small>
+                                    </ItenListFunctions>)
+                                }
+                            </ListInfo>
+                            {/* <NavLink to="/matricula">Fazer Matricula</NavLink> */}
+                            {/* <ListGeneric /> */}
+                        </BoxList>
+                    )}
+                    <TableAluno />
+                </>
+            </MainHome>
+        </ConteinerHome>
     );
 }

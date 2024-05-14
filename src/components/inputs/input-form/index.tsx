@@ -1,8 +1,8 @@
 import { FieldValues, UseFormReturn } from "react-hook-form";
-import "./styled.css";
-import getValueInObject from "../../utils/get-values-in-object";
-import iInputGeneric from "../../interfaces/inputs-interface/input-generic";
+import getValueInObject from "../../../utils/get-values-in-object";
+import iInputGeneric from "../../../interfaces/inputs-interface/input-generic";
 import TextInput from "../mask-input";
+import { FormSelect, InputFormConteiner, InputLabelForm, SpanError } from "./styled";
 
 /**
  * Propriedades esperadas pelo componente InputForm.
@@ -40,11 +40,11 @@ const Select = ({ name, useFormRegister: { register }, params: { selects }, defa
     const value = getValueInObject(name, defaultValues);
 
     return selects ? (
-        <select defaultValue={value} {...register(name)} id={id} name={name}>
+        <FormSelect defaultValue={value} {...register(name)} id={id} name={name}>
             {selects.map((option, index) => (
                 <option key={index} value={option.value}>{option.text}</option>
             ))}
-        </select>
+        </FormSelect>
     ) : <></>;
 };
 
@@ -104,14 +104,14 @@ const InputForm = ({ params, useFormRegister, defaultValues }: PropsInputForm): 
     const error = getValueInObject(name, errors);
 
     return (
-        <div>
-            <div className="input-form-container" style={{ width: params.inputWidth }}>
-                <label htmlFor={`input-${name}`}>{params.label}</label>
+        <>
+            <InputFormConteiner error={error && true} width={params.inputWidth}>
+                <InputLabelForm htmlFor={`input-${name}`}>{params.label}</InputLabelForm>
                 <Select {...{ useFormRegister, name, params, defaultValues }} />
                 <Input {...{ useFormRegister, name, params, defaultValues }} />
-            </div>
-            {error && <span style={{ color: "red", fontSize: "10px" }} className="error-message">{error.message + ""}</span>}
-        </div>
+            </InputFormConteiner>
+            <SpanError>{(error?.message || "") + ""}</SpanError>
+        </>
     );
 };
 

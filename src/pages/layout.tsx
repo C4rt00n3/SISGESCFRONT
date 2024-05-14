@@ -5,6 +5,7 @@ import Loading from '../components/loading'; // Importa o componente Loading
 import RoutesCentralize from './routes'; // Importa o componente RoutesCentralize
 import { BrowserRouter } from 'react-router-dom';
 import { Bounce, ToastContainer } from 'react-toastify';
+import GlobalStyle from '../index-styled';
 
 /**
  * Componente que define o layout principal da aplicação.
@@ -24,6 +25,7 @@ export default function RootLayout() {
             <Loading />
             {/* Componente RoutesCentralize com as rotas da aplicação */}
             <RoutesCentralize />
+            <GlobalStyle />
           </MatriculaContextProvider>
         </HomeContextProvider>
       </BrowserRouter>

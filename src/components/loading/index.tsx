@@ -1,12 +1,12 @@
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
-import "./styled.css"
 import { useHomeContext } from "../../contexts/home-provider-context"
+import { ConteinerLoading } from "./styled"
 
 const Loading = () => {
     const { loading } = useHomeContext()
-    return loading ? <div className="conteiner-loading">
+    return loading ? <ConteinerLoading>
         <AiOutlineLoading3Quarters color="#fff" />
-    </div>
+    </ConteinerLoading>
         : <></>
 }
 

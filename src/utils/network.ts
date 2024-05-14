@@ -10,8 +10,7 @@ class NetWork {
         private readonly params: AxiosRequestConfig["params"],
         private readonly headers: AxiosRequestConfig["headers"] = {},
     ) {
-        this.baseUrl = "https://189b-128-201-182-77.ngrok-free.app/" 
-        // process.env.API_URL;
+        this.baseUrl = process.env.API_URL;
         this.token = localStorage.getItem("token") || null;
         this.headers = {
             "Authorization": "Bearer " + this.token,
