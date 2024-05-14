@@ -3,6 +3,7 @@ import { FieldValues, UseFormReturn } from "react-hook-form";
 import InputFields from "../../../interfaces/inputs-interface/input-fields";
 import getValueInObject from "../../../utils/get-values-in-object";
 import InputForm from "../../inputs/input-form";
+import { ConteinerCheckBox, ConteinerInputAndCheckox, ConteinerInputs, DivCheckBox } from "./styled";
 
 interface RenderInputsProps {
     form: InputFields;
@@ -22,9 +23,9 @@ const CheckBoxAndTitle = ({
     isChecked,
     setIsChecked,
 }: CheckBoxProps) => {
-    return <div style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+    return <ConteinerCheckBox>
         <h3>{title}</h3>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <DivCheckBox style={{  }}>
             {inputCheckbox && (
                 <>
                     <p>{inputCheckbox.text}</p>
@@ -36,8 +37,8 @@ const CheckBoxAndTitle = ({
                     />
                 </>
             )}
-        </div>
-    </div>
+        </DivCheckBox>
+    </ConteinerCheckBox>
 }
 
 const InputFieldsUse = ({
@@ -48,10 +49,9 @@ const InputFieldsUse = ({
 }: CheckBoxProps) => {
     return <>
         {(isChecked || !inputCheckbox) && (
-            <div style={{ display: "flex", width: "100%", flexWrap: "wrap", gap: "20px" }}>
+            <ConteinerInputs id="ConteinerInputs">
                 {inputs.map(({ name, ...input }, index) => {
                     const nameP = `${nameForm !== "" ? (nameForm + '.') : ""}${name}`
-
                     return (
                         <InputForm
                             defaultValues={defaultValues}
@@ -61,7 +61,7 @@ const InputFieldsUse = ({
                         />
                     );
                 })}
-            </div>
+            </ConteinerInputs>
         )}
     </>
 }
@@ -70,10 +70,10 @@ const RenderInputs = ({ form, useFormRegister, defaultValues }: RenderInputsProp
     const open = getValueInObject(form.nameForm, defaultValues) ? true : false;
     const [isChecked, setIsChecked] = useState<boolean>(open);
     return (
-        <div style={{ width: "100%" }}>
+        <ConteinerInputAndCheckox>
             <CheckBoxAndTitle {...{ form, useFormRegister, defaultValues, isChecked, setIsChecked }} />
             <InputFieldsUse {...{ form, useFormRegister, defaultValues, isChecked, setIsChecked }} />
-        </div>
+        </ConteinerInputAndCheckox>
     );
 };
 

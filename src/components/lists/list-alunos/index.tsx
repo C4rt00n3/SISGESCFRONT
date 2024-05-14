@@ -13,6 +13,7 @@ import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
 import { iDocumento } from "../../../interfaces/netwok-interface/doc-interface";
 import enumToArray from "../../../utils/enum-to-array";
+import { NavLink } from "react-router-dom";
 
 /**
  * Interface para os filtros da tabela de alunos
@@ -161,6 +162,7 @@ const TurnoComp = ({ turno }: { turno: Turno }) => {
  */
 const AlunoItem = ({
     matricula: {
+        id,
         anoLetivo,
         status,
         turno,
@@ -178,11 +180,13 @@ const AlunoItem = ({
     return (
         <li>
             <BoxUser>
-                <EllipseUser />
-                <div>
-                    <p>{nome}</p>
-                    <small>{anoLetivo}</small>
-                </div>
+                <NavLink to={`/matricula/${id}`}>
+                    <EllipseUser />
+                    <div>
+                        <p>{nome}</p>
+                        <small>{anoLetivo}</small>
+                    </div>
+                </NavLink>
             </BoxUser>
             <p><IconCircleArrow rotate={225} /> 9:36</p>
             <p><IconCircleArrow rotate={45} /> 11:36</p>
