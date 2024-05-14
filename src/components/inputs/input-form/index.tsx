@@ -2,7 +2,7 @@ import { FieldValues, UseFormReturn } from "react-hook-form";
 import getValueInObject from "../../../utils/get-values-in-object";
 import iInputGeneric from "../../../interfaces/inputs-interface/input-generic";
 import TextInput from "../mask-input";
-import { FormSelect, InputFormConteiner, InputLabelForm, SpanError } from "./styled";
+import { FormSelect, InputConteiner, InputFormConteiner, InputLabelForm, SpanError } from "./styled";
 
 /**
  * Propriedades esperadas pelo componente InputForm.
@@ -99,19 +99,19 @@ const Input = ({ params, useFormRegister, name, defaultValues }: PropsSelectsOrI
  * @returns Um elemento JSX representando o campo de entrada.
  */
 const InputForm = ({ params, useFormRegister, defaultValues }: PropsInputForm): JSX.Element => {
-    const { name } = params;
+    const { name, inputWidth } = params;
     const { formState: { errors } } = useFormRegister;
     const error = getValueInObject(name, errors);
 
     return (
-        <>
-            <InputFormConteiner error={error && true} width={params.inputWidth}>
+        <InputConteiner width={inputWidth ? inputWidth : `${name.length * 10}px`}>
+            <InputFormConteiner error={error && true}>
                 <InputLabelForm htmlFor={`input-${name}`}>{params.label}</InputLabelForm>
                 <Select {...{ useFormRegister, name, params, defaultValues }} />
                 <Input {...{ useFormRegister, name, params, defaultValues }} />
             </InputFormConteiner>
             <SpanError>{(error?.message || "") + ""}</SpanError>
-        </>
+        </InputConteiner>
     );
 };
 

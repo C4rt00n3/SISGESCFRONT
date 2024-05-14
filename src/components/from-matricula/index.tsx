@@ -6,7 +6,7 @@ import NetWork from "../../utils/network";
 import removeEmptyKeys from "../../utils/remove-empty-keys";
 import callToast from "../../utils/tosts";
 import RenderNestedForm from "./Render-nested-form";
-import "./styled.css"
+import { BoxButtonDiv, ButtonForm, EnrollmentForm, BoxFormMatricula } from "./styled";
 
 interface PropsFormInpu {
     fields: InputFields[];
@@ -55,25 +55,21 @@ const FormMatricula = ({ fields, defaultValues, method = "post", id }: PropsForm
     };
 
     return (
-        <div className="enrollment-form">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div style={{ width: "100%", paddingInline: "17px" }}>
+        <EnrollmentForm>
+            <BoxFormMatricula onSubmit={handleSubmit(onSubmit)}>
                     {fields.map((form, index) => {
-                        return <div key={index} style={{ display: "flex", width: "100%", flexWrap: "wrap", gap: "20px" }}>
-                            <RenderNestedForm {...{ form, register, useFormRegister, defaultValues }} />
-                        </div>
+                        return <RenderNestedForm key={index} {...{ form, register, useFormRegister, defaultValues }} />
+                        
                     })}
-                    <div className="box-button-div">
-                        <button
-                            style={{ backgroundColor: method == "post" ? "var(--pink)" : "var(--warning-color)" }}
-                            className="button-form"
+                    <BoxButtonDiv>
+                        <ButtonForm
+                            style={{ backgroundColor: method == "post" ? "var(--brand-color)" : "var(--warning-color)" }}
                             type="submit">
                             {method == "post" ? "Enviar" : "Editar"}
-                        </button>
-                    </div>
-                </div>
-            </form >
-        </div >
+                        </ButtonForm>
+                    </BoxButtonDiv>
+            </BoxFormMatricula >
+        </EnrollmentForm >
     );
 };
 

@@ -1,7 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import Home from "./home/page";
 import Login from "./login/page";
-import EnrollmentRouteWithId from "./matricula/[id]/page";
 import Matricula from "./matricula/page";
 import AlunoPage from "./aluno/page";
 
@@ -27,11 +26,11 @@ const RoutesCentralize = () => {
         },
         {
             path: "/matricula/:id",
-            element: <EnrollmentRouteWithId />
+            element: <Matricula />
         },
         {
             path: "alunos",
-            element: <AlunoPage/>
+            element: <AlunoPage />
         }
     ]);
     return routers

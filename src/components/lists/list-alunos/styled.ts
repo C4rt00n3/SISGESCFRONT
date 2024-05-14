@@ -137,16 +137,19 @@ export const BoxTableItens = styled.ul<{ columns: number }>`
 `;
 
 export const BoxUser = styled.div`
-    width: 250px;
+    a {
+        width: 250px;
 
-    overflow: auto;
+        overflow: auto;
 
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
 
-    gap: 10px;
+        gap: 10px;
 
-    height: max-content;
+        height: max-content;
+        text-decoration: none;
+    }
 
     div {
         color: var(--brand-color);

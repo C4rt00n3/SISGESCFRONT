@@ -10,10 +10,10 @@ export const ConteinerHome = styled.div`
 
 export const MainHome = styled.main`
     position: relative;
-
-    width: calc(90% - 25%);
+    width: calc(100% - 24px);
     height: 90%;
     margin-top: 5%;
+    margin-left: 5%;
 
     overflow-y: auto;
     

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchInputConteiner = styled.div`
-    width: 100%;
+    width: (65%);
     height: 48px;
 
     padding-inline: 7px;
@@ -56,7 +56,7 @@ export const BoxButtonInput = styled.div`
 `;
 
 export const SearchItenList = styled.li`
-    width: 90%;
+    width: calc(100% - 24px);
     height: 35px;
     padding-inline: 12px;
 
@@ -64,21 +64,20 @@ export const SearchItenList = styled.li`
     align-items: center;
     justify-content: space-between;
 
+    border-bottom: 1px solid var(--gray-line);
+
     a {
         color: #fff
     }
 `;
 
 export const SearchResultContainer = styled.ul`
-    width: 100%;
+    width: 70%;
     max-height: 200px;
     min-height: 200px;
 
-    padding-inline: 7px;
-
     background-color: var(--brand-color);
     color: #fff;
-    opacity: 80%;
 
     position: absolute;
     z-index: 2;
@@ -90,6 +89,8 @@ export const SearchResultContainer = styled.ul`
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    padding: 0;
 `
 
 export const SearchBoxInput = styled.div`
@@ -117,10 +118,10 @@ export const SerchInput = styled.input`
 `;
 
 export const SearchConteiner = styled.div`
-    position: relative;
+    width: 65%;
+    position: fixed;
 
-    width: 70%;
-    max-width: 590px;
+    z-index: 2;
 `;
 
 export const ButtonCloseInput = styled.button`
