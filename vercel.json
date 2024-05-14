@@ -1,0 +1,20 @@
+{
+    "routes": [
+        {
+            "src": "/",
+            "dest": "./src/page/login/page"
+        },
+        {
+            "src": "/matricula",
+            "dest": "./src/page/matricula/page"
+        },
+        {
+            "src": "/home",
+            "dest": "./src/page/home/page"
+        },
+        {
+            "src": "/matricula/:id",
+            "dest": "./src/page/matricula/page"
+        }
+    ]
+}

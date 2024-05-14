@@ -20,6 +20,7 @@ export const FormSelect = styled.select`
 export const InputConteiner = styled.div<{width: string}>`
     width: ${({width}) => width ? width : '35%'};
     min-width: 150px;
+    max-width: 220px;
 `;
 
 export const InputFormConteiner = styled.div<{width?: string, error: boolean}>`
