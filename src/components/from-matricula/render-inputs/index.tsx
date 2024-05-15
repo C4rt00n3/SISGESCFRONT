@@ -25,7 +25,7 @@ const CheckBoxAndTitle = ({
 }: CheckBoxProps) => {
     return <ConteinerCheckBox>
         <h3>{title}</h3>
-        <DivCheckBox style={{  }}>
+        <DivCheckBox>
             {inputCheckbox && (
                 <>
                     <p>{inputCheckbox.text}</p>

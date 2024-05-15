@@ -42,7 +42,7 @@ const Login = (): JSX.Element => {
                             <InputForm
                                 key={index}
                                 useFormRegister={useFormRegister}
-                                params={{ ...input, inputWidth: '100%' }}
+                                params={{ ...input, inputWidth: '100%', maxWidth: '100%' }}
                             />
                         ))
                     }

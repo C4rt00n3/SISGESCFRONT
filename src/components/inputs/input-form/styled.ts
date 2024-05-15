@@ -17,16 +17,16 @@ export const FormSelect = styled.select`
     }
 `;
 
-export const InputConteiner = styled.div<{width: string}>`
-    width: ${({width}) => width ? width : '35%'};
+export const InputConteiner = styled.div<{ width: string, maxWidth: string }>`
+    width: ${({ width }) => width ? width : '35%'};
     min-width: 150px;
-    max-width: 220px;
+    max-width: ${({ maxWidth }) => maxWidth ? maxWidth : "100%"};
 `;
 
-export const InputFormConteiner = styled.div<{width?: string, error: boolean}>`
+export const InputFormConteiner = styled.div<{ width?: string, error: boolean }>`
     width: 100%;
 
-    outline: 2px solid ${({error}) => error ? "red": "var(--text-card)"};
+    outline: 2px solid ${({ error }) => error ? "red" : "var(--text-card)"};
     background-color: var(--withe-color);
 
     display: flex;

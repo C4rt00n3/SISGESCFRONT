@@ -16,5 +16,6 @@ export default interface iInputGeneric {
     value?: any,
     error?: boolean,
     register?: UseFormRegister<FieldValues>,
-    errors?: FieldErrors<FieldValues>
+    errors?: FieldErrors<FieldValues>,
+    maxWidth?: string 
 }

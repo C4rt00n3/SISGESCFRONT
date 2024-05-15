@@ -1,8 +1,8 @@
-import { useRoutes } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./home/page";
 import Login from "./login/page";
 import Matricula from "./matricula/page";
-import AlunoPage from "./aluno/page";
+import { createRoot } from "react-dom/client";
 
 /**
  * Componente que centraliza a definição de rotas em uma aplicação React Router.
@@ -11,29 +11,35 @@ import AlunoPage from "./aluno/page";
  * @returns Um fragmento contendo os componentes Routes e ToastContainer.
  */
 const RoutesCentralize = () => {
-    const routers = useRoutes([
+    const router = createBrowserRouter([
         {
             path: "/",
-            element: <Login />
+            element: <Login />,
+            children: [
+                {
+                    path: "matricula",
+                    element: <Matricula />,
+                },
+                {
+                    path: "matricula/:id",
+                    element: <Matricula />,
+                },
+                {
+                    path: "home",
+                    element: <Home />,
+                },
+            ],
         },
-        {
-            path: "/home",
-            element: <Home />,
-        },
-        {
-            path: "/matricula",
-            element: <Matricula />,
-        },
-        {
-            path: "/matricula/:id",
-            element: <Matricula />
-        },
-        {
-            path: "alunos",
-            element: <AlunoPage />
-        }
     ]);
-    return routers
+
+    const root = document?.getElementById("root");
+
+    root && createRoot(root).render(
+        <RouterProvider router={router} />
+    );
+
+    return <></>
+
 };
 
 export default RoutesCentralize;

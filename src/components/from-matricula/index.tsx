@@ -20,7 +20,7 @@ interface PropsFormInpu {
  * @param fields Um array de objetos contendo os campos de input para o formulário.
  * @param defautValue uma valor para iniciar o form.
  */
-const FormMatricula = ({ fields, defaultValues, method = "post", id }: PropsFormInpu) => {
+const FormMatricula = ({ fields, defaultValues, method = "post", id,  }: PropsFormInpu) => {
     const useFormRegister = useForm({
         resolver: zodResolver(schemaMatricula),
     });

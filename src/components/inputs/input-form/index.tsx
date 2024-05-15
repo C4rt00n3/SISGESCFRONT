@@ -99,12 +99,12 @@ const Input = ({ params, useFormRegister, name, defaultValues }: PropsSelectsOrI
  * @returns Um elemento JSX representando o campo de entrada.
  */
 const InputForm = ({ params, useFormRegister, defaultValues }: PropsInputForm): JSX.Element => {
-    const { name, inputWidth } = params;
+    const { name, inputWidth, maxWidth } = params;
     const { formState: { errors } } = useFormRegister;
     const error = getValueInObject(name, errors);
 
     return (
-        <InputConteiner width={inputWidth ? inputWidth : `${name.length * 10}px`}>
+        <InputConteiner maxWidth={maxWidth ? maxWidth : "250px"} width={inputWidth ? inputWidth : `${name.length * 10}px`}>
             <InputFormConteiner error={error && true}>
                 <InputLabelForm htmlFor={`input-${name}`}>{params.label}</InputLabelForm>
                 <Select {...{ useFormRegister, name, params, defaultValues }} />
