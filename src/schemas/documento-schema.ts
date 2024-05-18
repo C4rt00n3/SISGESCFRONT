@@ -6,7 +6,7 @@ import schemaTituloEleitor from "./titulo-schema";
 
 const schemaDocumento = z.object({
     livro: z.string().optional(),
-    folha: z.string().optional(),
+    folha: z.number().optional(),
     SUS: schemaSus,
     RG: schemaRg,
     SituacaoMilitar: z.union([

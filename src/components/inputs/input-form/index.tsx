@@ -2,7 +2,8 @@ import { FieldValues, UseFormReturn } from "react-hook-form";
 import getValueInObject from "../../../utils/get-values-in-object";
 import iInputGeneric from "../../../interfaces/inputs-interface/input-generic";
 import TextInput from "../mask-input";
-import { FormSelect, InputConteiner, InputFormConteiner, InputLabelForm, SpanError } from "./styled";
+import { FormSelect, InputContainer, InputFormContainer, InputLabelForm, SpanError } from "./styled";
+import convertType from "../../../utils/convertType";
 
 /**
  * Propriedades esperadas pelo componente InputForm.
@@ -13,7 +14,7 @@ interface PropsInputForm {
     /** O retorno do useForm do React Hook Form. */
     useFormRegister: UseFormReturn<FieldValues, any, undefined>;
     /** Valores padrão para preencher o campo. */
-    defaultValues?: Record<string, unknown>
+    defaultValues?: Record<string, unknown>;
 }
 
 /**
@@ -27,13 +28,13 @@ interface PropsSelectsOrInput {
     /** Os parâmetros para configurar o campo de entrada. */
     params: iInputGeneric;
     /** Valores padrão para preencher o campo. */
-    defaultValues?: Record<string, unknown>
+    defaultValues?: Record<string, unknown>;
 }
 
 /**
  * Componente Select para renderizar um campo select.
- * @param props As propriedades do componente.
- * @returns Um elemento JSX representando o campo select.
+ * @param {PropsSelectsOrInput} props - As propriedades do componente.
+ * @returns {JSX.Element} - Um elemento JSX representando o campo select.
  */
 const Select = ({ name, useFormRegister: { register }, params: { selects }, defaultValues }: PropsSelectsOrInput): JSX.Element => {
     const id = `input-${name}`;
@@ -49,28 +50,6 @@ const Select = ({ name, useFormRegister: { register }, params: { selects }, defa
 };
 
 /**
- * Converte um valor para um tipo específico.
- * @param value O valor a ser convertido.
- * @param type O tipo para o qual o valor deve ser convertido.
- * @returns O valor convertido para o tipo especificado.
- */
-const convertType = (value: any, type: string | undefined) => {
-    if (value)
-        switch (type) {
-            case "number":
-                return Number(value);
-            case "boolean":
-                return Boolean(value);
-            case "date":
-                return new Date(value).toISOString().substring(0, 10);
-            default:
-                return value;
-        }
-    else
-        return undefined
-};
-
-/**
  * Componente Input para renderizar um campo de entrada com máscara.
  * @param {PropsSelectsOrInput} props - As propriedades do componente.
  * @returns {JSX.Element} - Um elemento JSX representando o campo de entrada com máscara.
@@ -78,8 +57,7 @@ const convertType = (value: any, type: string | undefined) => {
 const Input = ({ params, useFormRegister, name, defaultValues }: PropsSelectsOrInput): JSX.Element => {
     const { placeholder, type, selects, mask } = params;
     const id = `input-${name}`;
-    const value = convertType(getValueInObject(name, defaultValues), type);
-
+    const value = convertType(getValueInObject(name, defaultValues || undefined), type);
     return !selects ? (
         <TextInput
             id={id}
@@ -95,8 +73,8 @@ const Input = ({ params, useFormRegister, name, defaultValues }: PropsSelectsOrI
 
 /**
  * Componente de formulário de entrada que renderiza um campo de entrada com ou sem máscara.
- * @param props As propriedades do componente.
- * @returns Um elemento JSX representando o campo de entrada.
+ * @param {PropsInputForm} props - As propriedades do componente.
+ * @returns {JSX.Element} - Um elemento JSX representando o campo de entrada.
  */
 const InputForm = ({ params, useFormRegister, defaultValues }: PropsInputForm): JSX.Element => {
     const { name, inputWidth, maxWidth } = params;
@@ -104,14 +82,14 @@ const InputForm = ({ params, useFormRegister, defaultValues }: PropsInputForm): 
     const error = getValueInObject(name, errors);
 
     return (
-        <InputConteiner maxWidth={maxWidth ? maxWidth : "250px"} width={inputWidth ? inputWidth : `${name.length * 10}px`}>
-            <InputFormConteiner error={error && true}>
+        <InputContainer maxWidth={maxWidth || "250px"} width={inputWidth || `${name.length * 10}px`}>
+            <InputFormContainer error={!!error}>
                 <InputLabelForm htmlFor={`input-${name}`}>{params.label}</InputLabelForm>
                 <Select {...{ useFormRegister, name, params, defaultValues }} />
                 <Input {...{ useFormRegister, name, params, defaultValues }} />
-            </InputFormConteiner>
-            <SpanError>{(error?.message || "") + ""}</SpanError>
-        </InputConteiner>
+            </InputFormContainer>
+            <SpanError>{(error?.message || "")}</SpanError>
+        </InputContainer>
     );
 };
 

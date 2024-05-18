@@ -1,12 +1,12 @@
 import Materia from "./materia.-interfaces";
 import { z } from "zod";
-import iFiliacao from "./filiacao-interface";
 import schemaMatricula from "../../schemas/matricula-schema";
+import iAluno from "./aluno-interface";
 
 type Type = z.infer<typeof schemaMatricula>;
 
 export default interface iMatricula extends Type {
     id: number;
     Materia: Materia[];
-    filiacao: iFiliacao[]
+    Aluno: iAluno
 }

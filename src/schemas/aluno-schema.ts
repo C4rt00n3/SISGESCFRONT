@@ -11,10 +11,10 @@ const schemaAluno = z.object({
         path: ['nome'],
     }),
     celularAluno: z.string()
-    .nonempty()
+    .optional()
     .transform(e => {
-        return e.replace(/\D/g, '');
-    }).refine( data => data.length === 11, {
+        return (e || "").replace(/\D/g, '');
+    }).refine( data => data.length === 11 || !data, {
         message: "O número não é valido."
     }),
     email: z.string().optional(),
@@ -55,7 +55,6 @@ const schemaAluno = z.object({
         cache.push(e.filiacao2)
     const { filiacao1, filiacao2, ...data } = e;
     return { ...data, filiacao: cache }
-
 });
 
 

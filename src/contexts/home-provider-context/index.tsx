@@ -6,6 +6,7 @@ import iStatistics from "../../interfaces/statistics";
 import iMatricula from "../../interfaces/netwok-interface/matricula-interface";
 import callToast from "../../utils/tosts";
 import { useNavigate } from "react-router-dom";
+import Usuario from "../../interfaces/user-interface";
 
 // Componente provedor de tema
 interface ThemeProviderProps {
@@ -17,6 +18,7 @@ export const HomeContext = createContext<HomeContextInterface>({} as HomeContext
 export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const [statistics, setStatistics] = useState<iStatistics | null>(null);
     const [matriculas, setMatriculas] = useState<iMatricula[]>([]);
+    const [user, setUser] = useState<Usuario>()
 
     const router = useNavigate();
 
@@ -26,6 +28,34 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
         setLoading(true)
         router(route)
         setLoading(false)
+    }
+
+    const fetchMatricula = (id: number): iMatricula | undefined => {
+        const fetch = async (id: number) => {
+            const api = new NetWork("matricula", 5000, { id })
+            return await api.getWithId({ id })
+        }
+        if(matriculas.length > 0)
+            fetchMatriculas();
+        
+        const findMatricula = matriculas.find(e => e.id == Number(id));
+
+        if (!findMatricula)
+            fetch(+id).then(matricula => {
+                return {
+                    ...matricula,
+                    Aluno: {
+                        ...matricula.Aluno,
+                        ...(matricula.Aluno?.filiacao[0] && { filiacao1: matricula.Aluno.filiacao[0] }),
+                        ...(matricula.Aluno?.filiacao[1] && { filiacao2: matricula.Aluno.filiacao[1] }),
+                    }
+                }
+            }).catch(error => {
+                callToast("error", error.response?.data?.message)
+                throw error
+            })
+        else
+            return findMatricula
     }
 
     const api = new NetWork("", 5000, {});
@@ -66,7 +96,11 @@ export const HomeContextProvider: React.FC<ThemeProviderProps> = ({ children }) 
             setMatriculas,
             loading,
             fetchStatics,
-            fetchMatriculas
+            fetchMatriculas,
+            user,
+            setUser,
+            fetchMatricula,
+            setLoading
         }}>
             {children}
         </HomeContext.Provider>
