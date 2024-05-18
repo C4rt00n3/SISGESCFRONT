@@ -325,7 +325,7 @@ const dataInputsMatricula = (turmas: iTurma[], series: iSerie[]): InputFields[] 
                                 {
                                     name: "folha",
                                     label: 'Número da Folha',
-                                    type: 'text',
+                                    type: 'number',
                                 },
                             ],
                             subForm: [

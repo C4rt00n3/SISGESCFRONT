@@ -11,4 +11,3 @@ export default function removeEmptyKeys(obj: any): any {
         return obj;
     }
 };
-

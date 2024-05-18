@@ -8,68 +8,78 @@ import callToast from "../../utils/tosts";
 import RenderNestedForm from "./Render-nested-form";
 import { BoxButtonDiv, ButtonForm, EnrollmentForm, BoxFormMatricula } from "./styled";
 
-interface PropsFormInpu {
+interface PropsFormInput {
     fields: InputFields[];
     defaultValues?: any;
     method: "post" | "patch";
-    id?: number
+    id?: number;
 }
 
 /**
  * Componente de formulário de matrícula de aluno.
- * @param fields Um array de objetos contendo os campos de input para o formulário.
- * @param defautValue uma valor para iniciar o form.
+ * @param {PropsFormInput} props - As propriedades do componente de formulário de matrícula.
+ * @returns {JSX.Element} O componente de formulário de matrícula renderizado.
  */
-const FormMatricula = ({ fields, defaultValues, method = "post", id,  }: PropsFormInpu) => {
+const FormMatricula = ({ fields, defaultValues, method = "post", id }: PropsFormInput): JSX.Element => {
     const useFormRegister = useForm({
         resolver: zodResolver(schemaMatricula),
+        defaultValues
     });
 
-    const { register, handleSubmit } = useFormRegister;
+    const { handleSubmit } = useFormRegister;
 
     const onSubmit = async (data: any) => {
         try {
-            const api = new NetWork("matricula", 5000, {})
+            const api = new NetWork("matricula", 5000, {});
             const { Aluno } = defaultValues;
             const { filiacao1, filiacao2 } = Aluno;
 
-            if (method == "post") {
-                await api.post(data, {})
-                callToast("success")
-            }
-            if (method === "patch" && id) {
+            console.log(method, id)
+            if (method === "post") {
+                await api.post(data, {});
+                callToast("success");
+            } else if (method === "patch" && id) {
+                console.log("PATCH")
                 if (data.Aluno.filiacao[0])
                     data.Aluno.filiacao[0].id = filiacao1.id;
                 if (data.Aluno.filiacao[1])
                     data.Aluno.filiacao[1].id = filiacao2.id;
 
+                const notEmptyKey = removeEmptyKeys(data);
+                console.log(notEmptyKey, "Aqui")
+
                 await api.patch({
                     params: { id },
-                    data: removeEmptyKeys(data)
-                })
+                    data: notEmptyKey
+                });
                 callToast("success", "Editado com sucesso");
             }
         } catch (error: any) {
-            callToast("error", error?.response?.data?.message)
+            callToast("error", error?.response?.data?.message);
         }
     };
 
     return (
         <EnrollmentForm>
             <BoxFormMatricula onSubmit={handleSubmit(onSubmit)}>
-                    {fields.map((form, index) => {
-                        return <RenderNestedForm key={index} {...{ form, register, useFormRegister, defaultValues }} />
-                        
-                    })}
-                    <BoxButtonDiv>
-                        <ButtonForm
-                            style={{ backgroundColor: method == "post" ? "var(--brand-color)" : "var(--warning-color)" }}
-                            type="submit">
-                            {method == "post" ? "Enviar" : "Editar"}
-                        </ButtonForm>
-                    </BoxButtonDiv>
-            </BoxFormMatricula >
-        </EnrollmentForm >
+                {fields.map((form, index) => (
+                    <RenderNestedForm
+                        key={index}
+                        form={form}
+                        useFormRegister={useFormRegister}
+                        defaultValues={defaultValues}
+                    />
+                ))}
+                <BoxButtonDiv>
+                    <ButtonForm
+                        style={{ backgroundColor: method === "post" ? "var(--brand-color)" : "var(--warning-color)" }}
+                        type="submit"
+                    >
+                        {method === "post" ? "Enviar" : "Editar"}
+                    </ButtonForm>
+                </BoxButtonDiv>
+            </BoxFormMatricula>
+        </EnrollmentForm>
     );
 };
 

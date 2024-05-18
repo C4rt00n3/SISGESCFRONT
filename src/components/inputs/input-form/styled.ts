@@ -17,13 +17,13 @@ export const FormSelect = styled.select`
     }
 `;
 
-export const InputConteiner = styled.div<{ width: string, maxWidth: string }>`
+export const InputContainer = styled.div<{ width: string, maxWidth: string }>`
     width: ${({ width }) => width ? width : '35%'};
     min-width: 150px;
     max-width: ${({ maxWidth }) => maxWidth ? maxWidth : "100%"};
 `;
 
-export const InputFormConteiner = styled.div<{ width?: string, error: boolean }>`
+export const InputFormContainer = styled.div<{ width?: string, error: boolean }>`
     width: 100%;
 
     outline: 2px solid ${({ error }) => error ? "red" : "var(--text-card)"};

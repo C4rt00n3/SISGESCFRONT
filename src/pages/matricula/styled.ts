@@ -14,6 +14,25 @@ export const MainMatricula = styled.main`
     overflow-x: hidden;
 `;
 
+
+export const BoxFunctions = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    a {
+        padding-inline: 18px;
+        padding-block: 8px;
+
+        background-color: var(--brand-color);
+        color: #fff;
+        text-decoration: none;
+
+        border-radius: 30px;
+
+        margin-block: 12px;
+    }
+`;
+
 export const ConteinerMatricula = styled.div`
     width: 90vw;
     height: 90vh;
@@ -22,4 +41,9 @@ export const ConteinerMatricula = styled.div`
     margin-inline: 5%;
 
     position: relative;
+`;
+
+export const BoxInfos = styled.div`
+    width: 100%;
+    height: 100%;
 `;
